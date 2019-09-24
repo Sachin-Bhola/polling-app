@@ -1,1 +1,26 @@
-<p>user-dashboard works!</p>
+<header>
+  <h3>User DashBoard</h3>
+  <button class="btn btn-primary" (click)="logout()">Logout</button>
+  <hr />
+</header>
+
+<div class="clearfix">
+  <div class="aside">
+    <table class="table table-hover ">
+      <tbody>
+        <tr>
+          <td routerLink="createpoll" routerLinkActive="active-link">Create Poll</td>
+        </tr>
+        <tr>
+          <td routerLink="viewpoll" routerLinkActive="active-link">View Poll</td>
+        </tr>
+        <tr>
+          <td routerLink="takepoll" routerLinkActive="active-link">Take Poll</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="dash-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
