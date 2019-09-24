@@ -1,0 +1,19 @@
+.poll-form {
+  width: 40%;
+  margin: auto;
+  margin-top: 40px;
+}
+
+.option-1 {
+  width: 48%;
+  float: left;
+}
+
+.option-2 {
+  width: 48%;
+  float: right;
+}
+
+.btn {
+  width: 100%;
+}

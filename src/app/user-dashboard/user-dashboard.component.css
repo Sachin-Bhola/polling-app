@@ -1,0 +1,43 @@
+header {
+  height: 60px;
+  position: relative;
+}
+
+header button {
+  position: absolute;
+  right: 20px;
+  top: 0;
+}
+
+h3 {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.aside {
+  width: 15%;
+  border: 2px solid rgb(209, 209, 209);
+  height: calc(100vh - 75px);
+  float: left;
+}
+
+hr {
+  margin-top: 27px;
+  padding: 0;
+
+}
+
+table tr td {
+  cursor: pointer;
+  text-align: center;
+}
+
+.dash-content {
+  width: 85%;
+  float: right;
+}
+
+.active-link {
+  background: rgb(94, 94, 167);
+  color: white;
+}
