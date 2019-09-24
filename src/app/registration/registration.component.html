@@ -1,0 +1,65 @@
+<div class="container">
+  <h1>Polling App</h1>
+  <div class="login-card">
+    <h3>Login</h3>
+    <hr />
+    <form [formGroup]="registrationform" (ngSubmit)="onSubmit(registrationform.value)">
+      <div *ngIf="alreadyExists" class="text-danger">
+        <h4>Account already exists</h4>
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input [class.is-invalid]="registrationform.get('username').invalid && registrationform.get('username').touched"
+          type="text" formControlName="username" required class="form-control">
+        <div *ngIf="registrationform.get('username').invalid && registrationform.get('username').touched">
+          <div *ngIf="registrationform.get('username').errors?.required" class="text-danger">Username is required</div>
+          <div *ngIf="registrationform.get('username').errors?.minlength" class="text-danger">Username must have 5
+            character
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password"
+          [class.is-invalid]="registrationform.get('password').invalid && registrationform.get('password').touched"
+          formControlName="password" class="form-control">
+        <div *ngIf="registrationform.get('password').invalid && registrationform.get('password').touched">
+          <div *ngIf="registrationform.get('password').errors?.required" class="text-danger">Password is required</div>
+          <div *ngIf="registrationform.get('password').errors?.pattern" class="text-danger">
+            Password must contain at least one letter, at least one number, and be longer than six charaters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input [class.is-invalid]="registrationform.errors?.misMatch" type="password" formControlName="confirmpassword"
+          class="form-control">
+        <small class="text-danger" *ngIf="registrationform.errors?.misMatch">Password do not match</small>
+      </div>
+      <div class="form-group">
+        <label for="role">Role</label>
+        <select formControlName="role"
+          [class.is-invalid]="registrationform.get('role').invalid && registrationform.get('role').touched"
+          class="form-control">
+          <option value="">--Role--</option>
+          <option>Admin</option>
+          <option>User</option>
+        </select>
+        <small class="text-danger"
+          [class.d-none]="registrationform.get('role').valid || registrationform.get('role').untouched">Please select
+          role</small>
+      </div>
+      <div class="btn-1 clearfix">
+        <button type="submit" [disabled]="registrationform.invalid || loading" class="btn btn-success">Register</button>
+        <div *ngIf="loading" class="spinner-border"></div>
+      </div>
+      <hr />
+      <h3>Already have an account? Click here .. </h3>
+      <div class="btn-1">
+        <button routerLink="/login" class="btn btn-info login-btn">Login</button>
+      </div>
+    </form>
+  </div>
+</div>
+<hr />
+<p>Copyright &copy; 2019</p>
