@@ -11,6 +11,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { RegistrationComponent } from './registration/registration.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { CreatePollComponent } from './create-poll/create-poll.component';
+import { ViewPollComponent } from './view-poll/view-poll.component';
+import { TakePollComponent } from './take-poll/take-poll.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     LoginComponent,
     PageNotFoundComponent,
     RegistrationComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    CreatePollComponent,
+    ViewPollComponent,
+    TakePollComponent
   ],
   imports: [
     BrowserModule,
