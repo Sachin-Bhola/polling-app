@@ -26,6 +26,9 @@
         </div>
       </div>
     </div>
+    <div *ngIf="poll" class="alert alert-success" role="alert">
+      Poll is created successfully
+    </div>
     <button type="submit" [disabled]="createpoll.invalid" class="btn btn-danger ">Submit</button>
   </form>
 </div>
