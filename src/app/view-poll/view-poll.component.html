@@ -1,1 +1,85 @@
-<p>view-poll works!</p>
+<div class="container">
+  <div *ngIf="loading" class="spinner-border"></div>
+  <h2>All Polls</h2>
+  <div *ngFor="let poll of pageOfItems; index as i">
+    <h4>{{i+1}}. {{poll.title}}</h4>
+    <button type="button" class="btn btn-info poll-edit-btn btn-all" data-toggle="modal" data-target="#editpoll"
+      (click)="getTitleAndID(poll.title,poll )">Edit</button>&nbsp;&nbsp;
+    <button type="button" *ngIf="poll._id !== showDeleting" class="btn btn-danger poll-del-btn btn-all"
+      (click)="deletepoll(poll)">Delete</button>
+    <button type="button" *ngIf="poll._id ===  showDeleting" disabled
+      class="btn btn-danger poll-del-btn btn-all">Deleting..</button>
+
+    <ol type="a">
+      <li *ngFor="let options of poll.options">{{options.option}}
+        <div class="progress">
+          <div class="progress-bar bg-info" role="progressbar" [style.width.%]="options.vote"
+            attr.aria-valuenow={{options.vote}} aria-valuemin="0" aria-valuemax="100">{{options.vote}}</div>
+        </div>
+        <button *ngIf="delOption !== options.option" type="button" class="btn btn-danger opt-del-btn btn-all"
+          (click)="deleteOpt(poll,options.option)">
+          Delete</button>
+        <button *ngIf="delOption  === options.option" disabled type="button" class="btn btn-danger opt-del-btn btn-all">
+          Deleting..</button>
+      </li>
+    </ol>
+    <button class="btn btn-success add-opt-btn btn-all" type="button" (click)="addOptionId(poll)" data-toggle="modal"
+      data-target="#addoption">Add
+      Option</button><br /><br />
+
+
+    <!-- The Modal -->
+    <div class="modal" id="editpoll">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Edit Poll</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <input type="text" autofocus #newPollName value="{{tempTitle}}" autofocus class="form-control">
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success" (click)="editpoll(tempPoll ,newPollName.value)"
+              data-dismiss="modal">Submit</button>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- The Modal -->
+    <div class="modal" id="addoption">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Add option</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <input type="text" autofocus #newoption value="" class="form-control">
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success" (click)="addOption(tempAddOption,newoption.value)"
+              data-dismiss="modal">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page">
+    <jw-pagination [items]="items" (changePage)="onChangePage($event)" class="pagination"></jw-pagination>
+  </div>
+</div>

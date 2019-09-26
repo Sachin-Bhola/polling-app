@@ -9,6 +9,8 @@ import { CreatePollService } from './create-poll.service';
 })
 export class CreatePollComponent implements OnInit {
 
+  poll = false;
+
   constructor(private fb: FormBuilder,
     private createPoll: CreatePollService) { }
 
@@ -22,13 +24,19 @@ export class CreatePollComponent implements OnInit {
     })
   })
 
+
   ngOnInit() {
   }
 
   onSubmit(form) {
     try {
+      this.poll = true;
       const res = this.createPoll.createPoll(form);
-      console.log(res);
+      if (res) {
+        setTimeout(() => {
+          this.poll = false;
+        }, 1000);
+      }
     } catch (error) {
       console.log(error);
     }

@@ -1,0 +1,62 @@
+h2 {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+h4 {
+  display: inline;
+}
+
+.container {
+  width: 70%;
+  margin-left: 50px;
+  position: relative;
+}
+
+ul {
+  list-style-position: none;
+}
+
+ul li {
+  text-decoration: none;
+}
+
+.btn-all {
+  position: absolute;
+}
+
+.poll-del-btn {
+  right: 80px;
+}
+
+.poll-edit-btn {
+  right: 15px;
+
+}
+
+.opt-del-btn {
+  position: relative;
+  bottom: 30px;
+  left: 800px;
+
+
+}
+
+.add-opt-btn {
+  position: relative;
+  left: 40px;
+}
+
+.spinner-border {
+  width: 6rem;
+  height: 6rem;
+  position: absolute;
+  left: 45%;
+  top: 180px;
+
+}
+
+.page {
+  text-align: center;
+}

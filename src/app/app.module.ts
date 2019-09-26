@@ -15,6 +15,8 @@ import { CreatePollComponent } from './create-poll/create-poll.component';
 import { ViewPollComponent } from './view-poll/view-poll.component';
 import { TakePollComponent } from './take-poll/take-poll.component';
 
+import { JwPaginationComponent } from 'jw-angular-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,8 @@ import { TakePollComponent } from './take-poll/take-poll.component';
     UserDashboardComponent,
     CreatePollComponent,
     ViewPollComponent,
-    TakePollComponent
+    TakePollComponent,
+    JwPaginationComponent
   ],
   imports: [
     BrowserModule,
