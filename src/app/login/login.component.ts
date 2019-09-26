@@ -11,8 +11,15 @@ import { LoginService } from './login.service';
 export class LoginComponent implements OnInit {
 
   loginform = this.fb.group({
-    username: ['', [Validators.required, Validators.minLength(5)]],
-    password: ['', [Validators.required, Validators.pattern('^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$')]],
+    username: ['', Validators.compose([
+      Validators.required,
+      Validators.minLength(5)
+    ])],
+    password: ['', Validators.compose([
+
+      Validators.required,
+      Validators.pattern('^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$')
+    ])],
   })
   constructor(private fb: FormBuilder, private router: Router, public loginService: LoginService) { }
 
