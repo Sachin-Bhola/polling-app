@@ -28,11 +28,8 @@ export class CreatePollComponent implements OnInit {
   onSubmit(form) {
     try {
       const res = this.createPoll.createPoll(form);
-      console.log(res);
     } catch (error) {
       console.log(error);
     }
-
   }
-
 }
