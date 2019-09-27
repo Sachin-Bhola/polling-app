@@ -40,7 +40,5 @@ export class CreatePollComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
-
   }
-
 }
