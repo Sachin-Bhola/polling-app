@@ -12,5 +12,4 @@ export class LoginService {
   login(body): Promise<any> {
     return this.http.get(`${environment.apiBase}/login?username=${body.username}&password=${body.password}`).toPromise();
   }
-
 }

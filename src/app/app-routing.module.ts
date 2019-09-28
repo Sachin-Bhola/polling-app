@@ -7,6 +7,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { CreatePollComponent } from './create-poll/create-poll.component';
 import { ViewPollComponent } from './view-poll/view-poll.component';
 import { TakePollComponent } from './take-poll/take-poll.component';
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
@@ -14,12 +15,12 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
   {
-    path: 'userdashboard', component: UserDashboardComponent, children:
+    path: 'userdashboard', component: UserDashboardComponent, canActivate: [AuthGuard], children:
       [
         { path: '', redirectTo: 'createpoll', pathMatch: "full" },
-        { path: 'createpoll', component: CreatePollComponent },
-        { path: 'viewpoll', component: ViewPollComponent },
-        { path: 'takepoll', component: TakePollComponent }
+        { path: 'createpoll', canActivate: [AuthGuard], component: CreatePollComponent },
+        { path: 'viewpoll', canActivate: [AuthGuard], component: ViewPollComponent },
+        { path: 'takepoll', canActivate: [AuthGuard], component: TakePollComponent }
       ]
   },
   { path: '**', component: PageNotFoundComponent }

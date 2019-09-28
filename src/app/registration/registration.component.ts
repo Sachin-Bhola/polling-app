@@ -44,7 +44,7 @@ export class RegistrationComponent implements OnInit {
       if (!res.error) {
         const res1 = await this.login.login(form);
         if (res1.token) {
-          localStorage.setItem('loginToken', res.token);
+          localStorage.setItem('loginToken', res1.token);
           this.router.navigate(['/userdashboard']);
         }
 

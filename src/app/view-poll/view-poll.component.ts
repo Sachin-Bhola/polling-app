@@ -19,7 +19,7 @@ export class ViewPollComponent implements OnInit {
   tempPoll;
   tempAddOption;
   showDeleting;
-  delOption;
+  deleOption;
 
 
   ngOnInit() {
@@ -55,14 +55,14 @@ export class ViewPollComponent implements OnInit {
   }
 
   async deleteOpt(poll, option) {
-    this.delOption = option;
+    this.deleOption = option;
     try {
       const response = await this.viewpoll.deleteoption(poll, option);
       this.items.forEach(pollele => {
         if (pollele._id === poll._id) {
           pollele.options = pollele.options.filter(optionele => optionele.option != option);
         }
-        this.delOption = "";
+        this.deleOption = "false";
       });
     }
     catch (error) {
@@ -106,5 +106,5 @@ export class ViewPollComponent implements OnInit {
   addOptionId(poll) {
     this.tempAddOption = poll;
   }
-
 }
+

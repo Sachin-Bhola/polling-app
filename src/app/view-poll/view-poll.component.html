@@ -9,17 +9,17 @@
       (click)="deletepoll(poll)">Delete</button>
     <button type="button" *ngIf="poll._id ===  showDeleting" disabled
       class="btn btn-danger poll-del-btn btn-all">Deleting..</button>
-
     <ol type="a">
       <li *ngFor="let options of poll.options">{{options.option}}
         <div class="progress">
           <div class="progress-bar bg-info" role="progressbar" [style.width.%]="options.vote"
             attr.aria-valuenow={{options.vote}} aria-valuemin="0" aria-valuemax="100">{{options.vote}}</div>
         </div>
-        <button *ngIf="delOption !== options.option" type="button" class="btn btn-danger opt-del-btn btn-all"
+        <button *ngIf="deleOption !== options.option" type="button" class="btn btn-danger opt-del-btn btn-all"
           (click)="deleteOpt(poll,options.option)">
           Delete</button>
-        <button *ngIf="delOption  === options.option" disabled type="button" class="btn btn-danger opt-del-btn btn-all">
+        <button *ngIf="deleOption  === options.option" disabled type="button"
+          class="btn btn-danger opt-del-btn btn-all">
           Deleting..</button>
       </li>
     </ol>
