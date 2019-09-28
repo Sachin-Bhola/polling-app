@@ -14,7 +14,7 @@ export class UserDashboardComponent implements OnInit {
   }
 
   logout() {
-    localStorage.clear();
+    localStorage.removeItem('loginToken');
     this.router.navigate(['/login']);
 
   }

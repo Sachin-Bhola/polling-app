@@ -1,4 +1,20 @@
-<button class="btn btn-primary" type="button" disabled>
-  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-  Loading...
-</button>
+<div class="container">
+  <div *ngIf="loading" class="spinner-border"></div>
+  <div *ngFor="let poll of pageOfItems;index as i">
+    <h2>{{i+1}}. {{poll.title}}</h2>
+    <div *ngFor="let options of poll.options">
+      <ul>
+        <li>
+          <input name="{{poll.title}}" [disabled]="loaderID === poll._id || votedPolls[i] === poll._id"
+            value="{{options.option}}" (click)="postRadioValue(poll._id,options.option)" type="radio" name="option">
+          {{options.option}}
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="loaderID !== poll._id  &&  votedPolls[i] !== poll._id">
+      <button type="button" (click)="onSubmit()" class="btn btn-success">Submit</button></div>
+    <div class="alert alert-success" role="alert" *ngIf="loaderID === poll._id || votedPolls[i] === poll._id">Poll is
+      submitted successfully..</div><br /><br />
+  </div>
+  <jw-pagination [items]="items" (changePage)="onChangePage($event)" class="pagination"></jw-pagination>
+</div>
