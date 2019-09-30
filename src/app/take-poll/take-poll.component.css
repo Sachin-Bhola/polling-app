@@ -1,0 +1,22 @@
+.spinner-border {
+  width: 6rem;
+  height: 6rem;
+  position: absolute;
+  left: 45%;
+  top: 180px;
+
+}
+
+.container {
+  padding-left: 130px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+ul li {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
