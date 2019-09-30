@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, Router } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -12,8 +12,10 @@ import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: "full" },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegistrationComponent },
+  {
+    path: 'login', component: LoginComponent, canActivate: [AuthGuard]
+  },
+  { path: 'register', component: RegistrationComponent, canActivate: [AuthGuard] },
   {
     path: 'userdashboard', component: UserDashboardComponent, canActivate: [AuthGuard], children:
       [
@@ -30,4 +32,17 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+
+  constructor(private router: Router) {
+
+  }
+
+  activate() {
+    if (!!localStorage.getItem('loginToken')) {
+      this.router.navigate(['/userdashboard']);
+      return true;
+    }
+  }
+
+}
