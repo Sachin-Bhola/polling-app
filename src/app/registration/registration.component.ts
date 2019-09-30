@@ -35,6 +35,7 @@ export class RegistrationComponent implements OnInit {
 
 
   ngOnInit() {
+
   }
 
   async onSubmit(form) {
