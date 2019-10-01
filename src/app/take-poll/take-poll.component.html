@@ -1,20 +1,27 @@
 <div class="container">
   <div *ngIf="loading" class="spinner-border"></div>
-  <div *ngFor="let poll of pageOfItems;index as i">
-    <h2>{{i+1}}. {{poll.title}}</h2>
-    <div *ngFor="let options of poll.options">
-      <ul>
-        <li>
-          <input name="{{poll.title}}" [disabled]="loaderID === poll._id || votedPolls[i] === poll._id"
-            value="{{options.option}}" (click)="postRadioValue(poll._id,options.option)" type="radio" name="option">
-          {{options.option}}
-        </li>
+  <ng-container *ngFor="let poll of pageOfItems;index  as i">
+    <form [formGroup]="takePoll" (ngSubmit)="onSubmit(takePoll,poll)">
+      <h2>{{i+1 + '. ' + poll.title}}</h2>
+      <ul [ngStyle]="poll.submitted && {'pointer-events': 'none'}">
+        <ng-container *ngFor="let options of poll.options">
+          <ng-container *ngIf="options.option !== 'null'">
+            <li>
+              <input type="radio" formControlName="selectedOption" [value]="options.option"
+                (click)="enableBtn(poll._id)" required>
+              <span>{{options.option}}</span>
+            </li>
+          </ng-container>
+        </ng-container>
       </ul>
-    </div>
-    <div *ngIf="loaderID !== poll._id  &&  votedPolls[i] !== poll._id">
-      <button type="button" (click)="onSubmit()" class="btn btn-success">Submit</button></div>
-    <div class="alert alert-success" role="alert" *ngIf="loaderID === poll._id || votedPolls[i] === poll._id">Poll is
-      submitted successfully..</div><br /><br />
-  </div>
+      <div *ngIf="!poll.submitted">
+        <button type="submit" [disabled]="poll._id !== selectedOptId || takePoll.invalid" class="btn btn-success">Submit
+        </button>
+      </div>
+      <div *ngIf="poll.submitted" class="alert alert-success" role="alert">
+        Poll is submitted successfully..
+      </div> <br /> <br />
+    </form>
+  </ng-container>
   <jw-pagination [items]="items" (changePage)="onChangePage($event)" class="pagination"></jw-pagination>
 </div>

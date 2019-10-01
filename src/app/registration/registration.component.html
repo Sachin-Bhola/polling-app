@@ -26,7 +26,8 @@
         <div *ngIf="registrationform.get('password').invalid && registrationform.get('password').touched">
           <div *ngIf="registrationform.get('password').errors?.required" class="text-danger">Password is required</div>
           <div *ngIf="registrationform.get('password').errors?.pattern" class="text-danger">
-            Password must contain at least one letter, at least one number, and be longer than six charaters
+            Password must contain at least one lowercase & one uppercase letter, at least one number & one special
+            character, and must be longer than six charaters
           </div>
         </div>
       </div>

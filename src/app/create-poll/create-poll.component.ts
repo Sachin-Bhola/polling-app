@@ -17,10 +17,10 @@ export class CreatePollComponent implements OnInit {
   createpoll = this.fb.group({
     title: ['', [Validators.required]],
     option: this.fb.group({
-      opt1: ['', [Validators.required]],
-      opt2: [''],
-      opt3: [''],
-      opt4: ['']
+      opt1: [null, [Validators.required]],
+      opt2: [null],
+      opt3: [null],
+      opt4: [null]
     })
   })
 
@@ -31,6 +31,7 @@ export class CreatePollComponent implements OnInit {
   onSubmit(form) {
     try {
       this.poll = true;
+      this.createpoll.reset();
       const res = this.createPoll.createPoll(form);
       if (res) {
         setTimeout(() => {
