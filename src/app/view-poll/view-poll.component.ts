@@ -1,5 +1,6 @@
 import { ViewpollService } from './viewpoll.service';
 import { Component, OnInit } from '@angular/core';
+import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-view-poll',
@@ -25,7 +26,11 @@ export class ViewPollComponent implements OnInit {
   ngOnInit() {
     this.viewpolls();
   }
-  constructor(private viewpoll: ViewpollService) { }
+  constructor(private viewpoll: ViewpollService, private fb: FormBuilder) { }
+
+  addOptionForm = this.fb.group({
+    newoption: ["", [Validators.required]]
+  })
 
   onChangePage(pageOfItems: Array<any>) {
     // update current page of items
@@ -86,10 +91,10 @@ export class ViewPollComponent implements OnInit {
   async addOption(poll, newOption) {
     try {
 
-      await this.viewpoll.addOption(poll, newOption);
+      await this.viewpoll.addOption(poll, newOption.value);
       this.items.forEach(pollele => {
         if (pollele._id === poll._id) {
-          pollele.options.push({ option: newOption, vote: 0 });
+          pollele.options.push({ option: newOption.value, vote: 0 });
         }
       })
     } catch (error) {
